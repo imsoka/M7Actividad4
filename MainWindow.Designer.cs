@@ -43,6 +43,11 @@
             this.destination = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.flightDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.airline = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.butAirline = new System.Windows.Forms.Button();
+            this.butDates = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -107,7 +112,7 @@
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(96, 378);
+            this.button2.Location = new System.Drawing.Point(95, 378);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(165, 36);
             this.button2.TabIndex = 4;
@@ -165,12 +170,69 @@
             this.airline.Text = "Aerolínea";
             this.airline.Width = 143;
             // 
+            // butAirline
+            // 
+            this.butAirline.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butAirline.Location = new System.Drawing.Point(345, 378);
+            this.butAirline.Name = "butAirline";
+            this.butAirline.Size = new System.Drawing.Size(112, 36);
+            this.butAirline.TabIndex = 5;
+            this.butAirline.Text = "Por aerolínea";
+            this.butAirline.UseVisualStyleBackColor = true;
+            this.butAirline.Click += new System.EventHandler(this.butAirline_Click);
+            // 
+            // butDates
+            // 
+            this.butDates.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butDates.Location = new System.Drawing.Point(463, 378);
+            this.butDates.Name = "butDates";
+            this.butDates.Size = new System.Drawing.Size(85, 36);
+            this.butDates.TabIndex = 6;
+            this.butDates.Text = "Por fecha";
+            this.butDates.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(554, 378);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 36);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "Por origen";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(651, 378);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(103, 36);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Por destino";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(283, 384);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(61, 24);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Filtrar:";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(3)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(939, 450);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.butDates);
+            this.Controls.Add(this.butAirline);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -181,6 +243,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.Text = "FlyinBisons";
+            this.Activated += new System.EventHandler(this.MainWindow_Activated);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -206,5 +270,10 @@
         private System.Windows.Forms.ColumnHeader destination;
         private System.Windows.Forms.ColumnHeader flightDate;
         private System.Windows.Forms.ColumnHeader airline;
+        private System.Windows.Forms.Button butAirline;
+        private System.Windows.Forms.Button butDates;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -14,20 +14,39 @@ namespace M7Actividad2
 {
     public partial class MainWindow : Form
     {
-        private VueloRespositoryInterface vueloRepository;
+        private static Vuelo[] vuelos;
         public MainWindow()
         {
             InitializeComponent();
-            this.vueloRepository = new MysqlVueloRepository();
-            showAllFlights();
+        }
+        private void butAirline_Click(object sender, EventArgs e)
+        {
+            AirlineFilterWindow airlineFilterWindow = new AirlineFilterWindow();
+            airlineFilterWindow.ShowDialog();
         }
 
         private void showAllFlights()
         {
-            lvAllFlights.Items.Clear();
-            Vuelo[] vuelos = vueloRepository.GetAll();
+            VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
+            vuelos = vueloRepository.GetAll();
+        }
 
-            foreach(Vuelo vuelo in vuelos)
+        public void showFlightsByAirline(string airline)
+        {
+            VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
+            vuelos = vueloRepository.getByAirline(airline);
+        }
+
+        private void MainWindow_Activated(object sender, EventArgs e)
+        {
+            showFlights(vuelos);
+        }
+
+        private void showFlights(Vuelo[] vuelos)
+        {
+            lvAllFlights.Items.Clear();
+
+            foreach (Vuelo vuelo in vuelos)
             {
                 ListViewItem lvItem = lvAllFlights.Items.Add(vuelo._flightNumber);
                 lvItem.SubItems.Add(vuelo._originAirportId);
@@ -35,6 +54,11 @@ namespace M7Actividad2
                 lvItem.SubItems.Add(vuelo._flightDate);
                 lvItem.SubItems.Add(vuelo._airlineId);
             }
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+            showAllFlights();
         }
     }
 }

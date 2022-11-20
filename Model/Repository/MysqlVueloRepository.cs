@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace M7Actividad2.Model.Repository
 {
@@ -13,7 +15,6 @@ namespace M7Actividad2.Model.Repository
     {
         private DataSet dataSet;
         private OdbcConnection connection;
-        private DataTable dataTable;
         private OdbcDataAdapter dataAdapter;
 
         public MysqlVueloRepository()
@@ -33,11 +34,9 @@ namespace M7Actividad2.Model.Repository
                 "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
                 "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
                 "vuelos.Origen = aerpuertos.Id";
-            this.dataAdapter = new OdbcDataAdapter(query, connection);
-            this.dataAdapter.Fill(this.dataSet, "consulta");
-            this.dataTable = this.dataSet.Tables["consulta"];
+            DataTable resultTable = this.execute(query);
             List<Vuelo> vuelos = new List<Vuelo>();
-            foreach(DataRow row in this.dataTable.Rows)
+            foreach(DataRow row in resultTable.Rows)
             {
                 Vuelo vuelo = new Vuelo(
                     row["Numero"].ToString(),
@@ -56,7 +55,27 @@ namespace M7Actividad2.Model.Repository
 
         public Vuelo[] getByAirline(string airline)
         {
-            throw new NotImplementedException();
+            string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
+                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
+                "vuelos.Origen = aerpuertos.Id AND aerolineas.Nombre LIKE " + "'" + airline + "'";
+            DataTable resultTable = this.execute(query);
+            List<Vuelo> vuelos = new List<Vuelo>();
+            foreach (DataRow row in resultTable.Rows)
+            {
+                Vuelo vuelo = new Vuelo(
+                    row["Numero"].ToString(),
+                    row["Origen"].ToString(),
+                    row["Destino"].ToString(),
+                    row["Fecha"].ToString(),
+                    row["Hora"].ToString(),
+                    row["Aerolinea"].ToString()
+                );
+
+                vuelos.Add(vuelo);
+            }
+
+            return vuelos.ToArray();
         }
 
         public Vuelo[] getByDestinationAirport(string destinationAirport)
@@ -82,6 +101,13 @@ namespace M7Actividad2.Model.Repository
         public Vuelo update(Vuelo vuelo)
         {
             throw new NotImplementedException();
+        }
+
+        private DataTable execute(string query)
+        {
+            this.dataAdapter = new OdbcDataAdapter(query, connection);
+            this.dataAdapter.Fill(this.dataSet, "consulta");
+            return this.dataSet.Tables["consulta"];
         }
     }
 }
