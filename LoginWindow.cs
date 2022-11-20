@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace M7Actividad2
 {
-    public partial class Form1 : Form
+    public partial class LoginWindow : Form
     {
-        public Form1()
+        public LoginWindow()
         {
             InitializeComponent();
         }
