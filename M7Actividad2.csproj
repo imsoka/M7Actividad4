@@ -52,6 +52,18 @@
     <Compile Include="AirlineFilterWindow.Designer.cs">
       <DependentUpon>AirlineFilterWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DestinationAirportFilterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DestinationAirportFilterWindow.Designer.cs">
+      <DependentUpon>DestinationAirportFilterWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OriginAirportFilterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OriginAirportFilterWindow.Designer.cs">
+      <DependentUpon>OriginAirportFilterWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
@@ -73,9 +85,12 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Aerolinea.cs" />
+    <Compile Include="Model\Aeropuerto.cs" />
     <Compile Include="Model\Exceptions\ModelNotFoundException.cs" />
     <Compile Include="Model\Repository\AerolineaRepositoryInterface.cs" />
+    <Compile Include="Model\Repository\AeropuertoRepositoryInterface.cs" />
     <Compile Include="Model\Repository\MysqlAerolineaRepository.cs" />
+    <Compile Include="Model\Repository\MysqlAeropuertoRepository.cs" />
     <Compile Include="Model\Repository\MysqlVueloRepository.cs" />
     <Compile Include="Model\Repository\UsuarioRepositoryInterface.cs" />
     <Compile Include="Model\Repository\VueloRespositoryInterface.cs" />
@@ -86,6 +101,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AirlineFilterWindow.resx">
       <DependentUpon>AirlineFilterWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DestinationAirportFilterWindow.resx">
+      <DependentUpon>DestinationAirportFilterWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OriginAirportFilterWindow.resx">
+      <DependentUpon>OriginAirportFilterWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginWindow.resx">
       <DependentUpon>LoginWindow.cs</DependentUpon>

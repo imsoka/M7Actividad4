@@ -80,7 +80,27 @@ namespace M7Actividad2.Model.Repository
 
         public Vuelo[] getByDestinationAirport(string destinationAirport)
         {
-            throw new NotImplementedException();
+            string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
+                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
+                "vuelos.Origen = aerpuertos.Id AND aerpuertos_1.Nombre LIKE " + "'" + destinationAirport + "'";
+            DataTable resultTable = this.execute(query);
+            List<Vuelo> vuelos = new List<Vuelo>();
+            foreach (DataRow row in resultTable.Rows)
+            {
+                Vuelo vuelo = new Vuelo(
+                    row["Numero"].ToString(),
+                    row["Origen"].ToString(),
+                    row["Destino"].ToString(),
+                    row["Fecha"].ToString(),
+                    row["Hora"].ToString(),
+                    row["Aerolinea"].ToString()
+                );
+
+                vuelos.Add(vuelo);
+            }
+
+            return vuelos.ToArray();
         }
 
         public Vuelo getByFlightNumber(string flightNumber)
@@ -90,7 +110,27 @@ namespace M7Actividad2.Model.Repository
 
         public Vuelo[] getByOriginAirport(string originAirport)
         {
-            throw new NotImplementedException();
+            string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
+                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
+                "vuelos.Origen = aerpuertos.Id AND aerpuertos.Nombre LIKE " + "'" + originAirport + "'";
+            DataTable resultTable = this.execute(query);
+            List<Vuelo> vuelos = new List<Vuelo>();
+            foreach (DataRow row in resultTable.Rows)
+            {
+                Vuelo vuelo = new Vuelo(
+                    row["Numero"].ToString(),
+                    row["Origen"].ToString(),
+                    row["Destino"].ToString(),
+                    row["Fecha"].ToString(),
+                    row["Hora"].ToString(),
+                    row["Aerolinea"].ToString()
+                );
+
+                vuelos.Add(vuelo);
+            }
+
+            return vuelos.ToArray();
         }
 
         public Vuelo store(Vuelo vuelo)

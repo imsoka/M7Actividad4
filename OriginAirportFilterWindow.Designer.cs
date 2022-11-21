@@ -1,6 +1,6 @@
 ﻿namespace M7Actividad2
 {
-    partial class AirlineFilterWindow
+    partial class OriginAirportFilterWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AirlineFilterWindow));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.butFilter = new System.Windows.Forms.Button();
-            this.cbAirlines = new System.Windows.Forms.ComboBox();
+            this.cbAirports = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -40,7 +39,7 @@
             // 
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.butFilter);
-            this.panel1.Controls.Add(this.cbAirlines);
+            this.panel1.Controls.Add(this.cbAirports);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.ForeColor = System.Drawing.Color.White;
@@ -56,40 +55,39 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(145, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(224, 24);
+            this.label1.Size = new System.Drawing.Size(228, 24);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Selecciona una aerolínea";
+            this.label1.Text = "Selecciona un aeropuerto";
             // 
-            // butFilter
+            // butFilterOrigin
             // 
             this.butFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.butFilter.Location = new System.Drawing.Point(186, 120);
-            this.butFilter.Name = "butFilter";
+            this.butFilter.Name = "butFilterOrigin";
             this.butFilter.Size = new System.Drawing.Size(142, 41);
             this.butFilter.TabIndex = 1;
             this.butFilter.Text = "Filtrar";
             this.butFilter.UseVisualStyleBackColor = true;
-            this.butFilter.Click += new System.EventHandler(this.butFilter_Click);
+            this.butFilter.Click += new System.EventHandler(this.butFilterOrigin_Click);
             // 
-            // cbAirlines
+            // cbAirports
             // 
-            this.cbAirlines.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAirlines.FormattingEnabled = true;
-            this.cbAirlines.Location = new System.Drawing.Point(186, 86);
-            this.cbAirlines.Name = "cbAirlines";
-            this.cbAirlines.Size = new System.Drawing.Size(142, 28);
-            this.cbAirlines.TabIndex = 0;
+            this.cbAirports.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbAirports.FormattingEnabled = true;
+            this.cbAirports.Location = new System.Drawing.Point(186, 86);
+            this.cbAirports.Name = "cbAirports";
+            this.cbAirports.Size = new System.Drawing.Size(142, 28);
+            this.cbAirports.TabIndex = 0;
             // 
-            // AirlineFilterWindow
+            // AirportFilterWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(3)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(515, 188);
             this.Controls.Add(this.panel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "AirlineFilterWindow";
-            this.Text = "FlyinBisons";
+            this.Name = "AirportFilterWindow";
+            this.Text = "AirportFilterWindow";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -100,7 +98,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button butFilter;
-        private System.Windows.Forms.ComboBox cbAirlines;
+        private System.Windows.Forms.ComboBox cbAirports;
         private System.Windows.Forms.Label label1;
     }
 }

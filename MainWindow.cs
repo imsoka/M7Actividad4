@@ -37,6 +37,16 @@ namespace M7Actividad2
             vuelos = vueloRepository.getByAirline(airline);
         }
 
+        public void showFlightsByOrigin(string airport) {
+            VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
+            vuelos = vueloRepository.getByOriginAirport(airport);
+        }
+
+        public void showFlightsByDestination(string airport)
+        {
+            VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
+            vuelos = vueloRepository.getByDestinationAirport(airport);
+        }
         private void MainWindow_Activated(object sender, EventArgs e)
         {
             showFlights(vuelos);
@@ -59,6 +69,18 @@ namespace M7Actividad2
         private void MainWindow_Load(object sender, EventArgs e)
         {
             showAllFlights();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            OriginAirportFilterWindow airportFilterWindow = new OriginAirportFilterWindow();
+            airportFilterWindow.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DestinationAirportFilterWindow airportFilterWindow = new DestinationAirportFilterWindow();
+            airportFilterWindow.ShowDialog();
         }
     }
 }
