@@ -82,42 +82,6 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ConsultaAllFlights" msprop:Generator_RowEvHandlerName="ConsultaAllFlightsRowChangeEventHandler" msprop:Generator_RowDeletedName="ConsultaAllFlightsRowDeleted" msprop:Generator_RowDeletingName="ConsultaAllFlightsRowDeleting" msprop:Generator_RowEvArgName="ConsultaAllFlightsRowChangeEvent" msprop:Generator_TablePropName="ConsultaAllFlights" msprop:Generator_RowChangedName="ConsultaAllFlightsRowChanged" msprop:Generator_UserTableName="ConsultaAllFlights" msprop:Generator_RowChangingName="ConsultaAllFlightsRowChanging" msprop:Generator_RowClassName="ConsultaAllFlightsRow" msprop:Generator_TableClassName="ConsultaAllFlightsDataTable" msprop:Generator_TableVarName="tableConsultaAllFlights">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Numero" msprop:Generator_ColumnPropNameInTable="NumeroColumn" msprop:Generator_ColumnPropNameInRow="Numero" msprop:Generator_UserColumnName="Numero" msprop:Generator_ColumnVarNameInTable="columnNumero" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Origen" msprop:Generator_ColumnPropNameInTable="OrigenColumn" msprop:Generator_ColumnPropNameInRow="Origen" msprop:Generator_UserColumnName="Origen" msprop:Generator_ColumnVarNameInTable="columnOrigen" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="34" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Destino" msprop:Generator_ColumnPropNameInTable="DestinoColumn" msprop:Generator_ColumnPropNameInRow="Destino" msprop:Generator_UserColumnName="Destino" msprop:Generator_ColumnVarNameInTable="columnDestino" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="34" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_UserColumnName="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Hora" msprop:Generator_ColumnPropNameInTable="HoraColumn" msprop:Generator_ColumnPropNameInRow="Hora" msprop:Generator_UserColumnName="Hora" msprop:Generator_ColumnVarNameInTable="columnHora" type="xs:duration" minOccurs="0" />
-              <xs:element name="Aerolinea" msprop:Generator_ColumnPropNameInTable="AerolineaColumn" msprop:Generator_ColumnPropNameInRow="Aerolinea" msprop:Generator_UserColumnName="Aerolinea" msprop:Generator_ColumnVarNameInTable="columnAerolinea" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="19" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
       </xs:choice>
     </xs:complexType>
   </xs:element>

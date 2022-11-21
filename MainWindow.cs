@@ -47,6 +47,11 @@ namespace M7Actividad2
             VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
             vuelos = vueloRepository.getByDestinationAirport(airport);
         }
+        public void showFlightsBetweenDates(DateTime fechaInicio, DateTime fechaFinal)
+        {
+            VueloRespositoryInterface vueloRepository = new MysqlVueloRepository();
+            vuelos = vueloRepository.getByDates(fechaInicio, fechaFinal);
+        }
         private void MainWindow_Activated(object sender, EventArgs e)
         {
             showFlights(vuelos);
@@ -61,7 +66,7 @@ namespace M7Actividad2
                 ListViewItem lvItem = lvAllFlights.Items.Add(vuelo._flightNumber);
                 lvItem.SubItems.Add(vuelo._originAirportId);
                 lvItem.SubItems.Add(vuelo._destinationAirportId);
-                lvItem.SubItems.Add(vuelo._flightDate);
+                lvItem.SubItems.Add(vuelo._flightDate.ToString("dd/MM/yyyy HH:mm"));
                 lvItem.SubItems.Add(vuelo._airlineId);
             }
         }
@@ -81,6 +86,28 @@ namespace M7Actividad2
         {
             DestinationAirportFilterWindow airportFilterWindow = new DestinationAirportFilterWindow();
             airportFilterWindow.ShowDialog();
+        }
+
+        private void butDates_Click(object sender, EventArgs e)
+        {
+            DateFilterWindow dateFilterWindow = new DateFilterWindow();
+            dateFilterWindow.ShowDialog();
+        }
+
+        private void butNewReserva_Click(object sender, EventArgs e)
+        {
+            if (lvAllFlights.SelectedItems.Count <= 0) return;
+            if (lvAllFlights.SelectedItems.Count > 1) return;
+
+            ListViewItem selectedItem = lvAllFlights.SelectedItems[0];
+            if (selectedItem == null) return;
+
+            NewReservaWindow newReservaWindow = new NewReservaWindow(selectedItem.Text);
+            newReservaWindow.ShowDialog();
+        }
+
+        public void showBookingConfirmation()
+        {
         }
     }
 }

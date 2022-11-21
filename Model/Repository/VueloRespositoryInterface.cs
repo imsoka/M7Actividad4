@@ -14,8 +14,6 @@ namespace M7Actividad2.Model.Repository
         Vuelo[] getByOriginAirport(string originAirport);
         Vuelo[] getByDestinationAirport(string destinationAirport);
         Vuelo[] getByAirline(string airline);
-        Vuelo store(Vuelo vuelo);
-        Vuelo update(Vuelo vuelo);
-        Vuelo Delete(string id);
+        Vuelo[] getByDates(DateTime startTime, DateTime endDate);
     }
 }

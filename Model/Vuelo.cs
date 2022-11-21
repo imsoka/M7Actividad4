@@ -10,20 +10,18 @@ namespace M7Actividad2.Model
     {
         public string _flightNumber;
         public string _originAirportId;
-        public string _flightDate;
-        public string _flightTime;
+        public DateTime _flightDate;
         public string _destinationAirportId;
         public string _airlineId;
 
         public Vuelo(
             string flightNumber, string originAirportId, string destinationAirportId, 
-            string flightDate, string flightTime, string airlineId)
+            DateTime flightDate, string airlineId)
         {
             this._flightNumber = flightNumber;
             this._originAirportId = originAirportId;
             this._destinationAirportId = destinationAirportId;
             this._flightDate = flightDate;
-            this._flightTime = flightTime;
             this._airlineId = airlineId;
         }
     }

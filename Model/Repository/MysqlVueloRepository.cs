@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Windows.Forms;
 
 namespace M7Actividad2.Model.Repository
 {
@@ -23,29 +25,18 @@ namespace M7Actividad2.Model.Repository
             connection.Open();
             this.dataSet = new DataSet();
         }
-        public Vuelo Delete(string id)
-        {
-            throw new NotImplementedException();
-        }
 
         public Vuelo[] GetAll()
         {
             string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
-                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "date(vuelos.Fecha) AS Fecha, time(vuelos.Hora) AS Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
                 "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
-                "vuelos.Origen = aerpuertos.Id";
+                "vuelos.Origen = aerpuertos.Id ORDER BY vuelos.Fecha ASC";
             DataTable resultTable = this.execute(query);
             List<Vuelo> vuelos = new List<Vuelo>();
             foreach(DataRow row in resultTable.Rows)
             {
-                Vuelo vuelo = new Vuelo(
-                    row["Numero"].ToString(),
-                    row["Origen"].ToString(),
-                    row["Destino"].ToString(),
-                    row["Fecha"].ToString(),
-                    row["Hora"].ToString(),
-                    row["Aerolinea"].ToString()
-                );
+                Vuelo vuelo = this.buildVuelo(row);
 
                 vuelos.Add(vuelo);
             }
@@ -56,21 +47,33 @@ namespace M7Actividad2.Model.Repository
         public Vuelo[] getByAirline(string airline)
         {
             string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
-                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "date(vuelos.Fecha) AS Fecha, time(vuelos.Hora) AS Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
                 "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
-                "vuelos.Origen = aerpuertos.Id AND aerolineas.Nombre LIKE " + "'" + airline + "'";
+                "vuelos.Origen = aerpuertos.Id AND aerolineas.Nombre LIKE " + "'" + airline + "' ORDER BY vuelos.Fecha ASC";
             DataTable resultTable = this.execute(query);
             List<Vuelo> vuelos = new List<Vuelo>();
             foreach (DataRow row in resultTable.Rows)
             {
-                Vuelo vuelo = new Vuelo(
-                    row["Numero"].ToString(),
-                    row["Origen"].ToString(),
-                    row["Destino"].ToString(),
-                    row["Fecha"].ToString(),
-                    row["Hora"].ToString(),
-                    row["Aerolinea"].ToString()
-                );
+                Vuelo vuelo = this.buildVuelo(row);
+
+                vuelos.Add(vuelo);
+            }
+
+            return vuelos.ToArray();
+        }
+
+        public Vuelo[] getByDates(DateTime startDate, DateTime endDate)
+        {
+            string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
+                "date(vuelos.Fecha) AS Fecha, time(vuelos.Hora) AS Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
+                "vuelos.Origen = aerpuertos.Id AND vuelos.Fecha >= date('" + startDate.ToString("yyyy-MM-dd") + "') AND vuelos.Fecha <= date('" +
+                endDate.ToString("yyy-MM-dd") + "') ORDER BY vuelos.Fecha ASC";
+            DataTable resultTable = this.execute(query);
+            List<Vuelo> vuelos = new List<Vuelo>();
+            foreach (DataRow row in resultTable.Rows)
+            {
+                Vuelo vuelo = this.buildVuelo(row);
 
                 vuelos.Add(vuelo);
             }
@@ -81,21 +84,14 @@ namespace M7Actividad2.Model.Repository
         public Vuelo[] getByDestinationAirport(string destinationAirport)
         {
             string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
-                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "date(vuelos.Fecha) AS Fecha, time(vuelos.Hora) AS Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
                 "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
-                "vuelos.Origen = aerpuertos.Id AND aerpuertos_1.Nombre LIKE " + "'" + destinationAirport + "'";
+                "vuelos.Origen = aerpuertos.Id AND aerpuertos_1.Nombre LIKE " + "'" + destinationAirport + "' ORDER BY vuelos.Fecha ASC";
             DataTable resultTable = this.execute(query);
             List<Vuelo> vuelos = new List<Vuelo>();
             foreach (DataRow row in resultTable.Rows)
             {
-                Vuelo vuelo = new Vuelo(
-                    row["Numero"].ToString(),
-                    row["Origen"].ToString(),
-                    row["Destino"].ToString(),
-                    row["Fecha"].ToString(),
-                    row["Hora"].ToString(),
-                    row["Aerolinea"].ToString()
-                );
+                Vuelo vuelo = this.buildVuelo(row);
 
                 vuelos.Add(vuelo);
             }
@@ -111,21 +107,14 @@ namespace M7Actividad2.Model.Repository
         public Vuelo[] getByOriginAirport(string originAirport)
         {
             string query = "SELECT vuelos.Numero, aerpuertos.Nombre AS Origen, aerpuertos_1.Nombre AS Destino, " +
-                "vuelos.Fecha, vuelos.Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
+                "date(vuelos.Fecha) AS Fecha, time(vuelos.Hora) AS Hora, aerolineas.Nombre AS Aerolinea FROM aerolineas, aerpuertos aerpuertos_1, " +
                 "vuelos, aerpuertos WHERE aerolineas.Id = vuelos.Aerolinea AND aerpuertos_1.Id = vuelos.Destino AND " +
-                "vuelos.Origen = aerpuertos.Id AND aerpuertos.Nombre LIKE " + "'" + originAirport + "'";
+                "vuelos.Origen = aerpuertos.Id AND aerpuertos.Nombre LIKE " + "'" + originAirport + "' ORDER BY vuelos.Fecha ASC";
             DataTable resultTable = this.execute(query);
             List<Vuelo> vuelos = new List<Vuelo>();
             foreach (DataRow row in resultTable.Rows)
             {
-                Vuelo vuelo = new Vuelo(
-                    row["Numero"].ToString(),
-                    row["Origen"].ToString(),
-                    row["Destino"].ToString(),
-                    row["Fecha"].ToString(),
-                    row["Hora"].ToString(),
-                    row["Aerolinea"].ToString()
-                );
+                Vuelo vuelo = this.buildVuelo(row);
 
                 vuelos.Add(vuelo);
             }
@@ -133,14 +122,20 @@ namespace M7Actividad2.Model.Repository
             return vuelos.ToArray();
         }
 
-        public Vuelo store(Vuelo vuelo)
+        private Vuelo buildVuelo(DataRow row)
         {
-            throw new NotImplementedException();
-        }
+            DateTime fecha = (DateTime) row["Fecha"];
 
-        public Vuelo update(Vuelo vuelo)
-        {
-            throw new NotImplementedException();
+            string fechaString = fecha.ToString("dd/MM/yyyy") + ' ' + row["hora"].ToString();
+            DateTime flightDate = DateTime.ParseExact(fechaString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+
+            return new Vuelo(
+                row["Numero"].ToString(),
+                row["Origen"].ToString(),
+                row["Destino"].ToString(),
+                flightDate,
+                row["Aerolinea"].ToString()
+            );
         }
 
         private DataTable execute(string query)

@@ -52,11 +52,29 @@
     <Compile Include="AirlineFilterWindow.Designer.cs">
       <DependentUpon>AirlineFilterWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="DateFilterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DateFilterWindow.Designer.cs">
+      <DependentUpon>DateFilterWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="DestinationAirportFilterWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DestinationAirportFilterWindow.Designer.cs">
       <DependentUpon>DestinationAirportFilterWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewBookingConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewBookingConfirmation.Designer.cs">
+      <DependentUpon>NewBookingConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewReservaWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewReservaWindow.Designer.cs">
+      <DependentUpon>NewReservaWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="OriginAirportFilterWindow.cs">
       <SubType>Form</SubType>
@@ -72,12 +90,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginWindow.Designer.cs">
-      <DependentUpon>LoginWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,24 +104,27 @@
     <Compile Include="Model\Repository\MysqlAerolineaRepository.cs" />
     <Compile Include="Model\Repository\MysqlAeropuertoRepository.cs" />
     <Compile Include="Model\Repository\MysqlVueloRepository.cs" />
-    <Compile Include="Model\Repository\UsuarioRepositoryInterface.cs" />
     <Compile Include="Model\Repository\VueloRespositoryInterface.cs" />
-    <Compile Include="Model\Reserva.cs" />
     <Compile Include="Model\Vuelo.cs" />
-    <Compile Include="Model\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AirlineFilterWindow.resx">
       <DependentUpon>AirlineFilterWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DateFilterWindow.resx">
+      <DependentUpon>DateFilterWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DestinationAirportFilterWindow.resx">
       <DependentUpon>DestinationAirportFilterWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NewBookingConfirmation.resx">
+      <DependentUpon>NewBookingConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewReservaWindow.resx">
+      <DependentUpon>NewReservaWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OriginAirportFilterWindow.resx">
       <DependentUpon>OriginAirportFilterWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LoginWindow.resx">
-      <DependentUpon>LoginWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
