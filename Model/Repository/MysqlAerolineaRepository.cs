@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace M7Actividad2.Model.Repository
+namespace M7Actividad4.Model.Repository
 {
     internal class MysqlAerolineaRepository : AerolineaRepositoryInterface
     {

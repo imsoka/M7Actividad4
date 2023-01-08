@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace M7Actividad2.Model.Exceptions
+namespace M7Actividad4.Model.Exceptions
 {
     internal class ModelNotFoundException: Exception
     {

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 
-namespace M7Actividad2.Model.Repository
+namespace M7Actividad4.Model.Repository
 {
     internal class MysqlVueloRepository : VueloRespositoryInterface
     {

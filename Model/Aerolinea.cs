@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace M7Actividad2.Model
+namespace M7Actividad4.Model
 {
     internal class Aerolinea
     {
